@@ -45,11 +45,11 @@ while not done:
 
     pygame.draw.rect(screen, BLACK, [startingX, startingY, barWidth, barHeight]) # 0
     pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight, barHeight, barWidth]) # 1
-    # pygame.draw.rect(screen, BLACK, [150, 10, 50, 20])
-    # pygame.draw.rect(screen, BLACK, [150, 10, 50, 20])
-    # pygame.draw.rect(screen, BLACK, [150, 10, 50, 20])
-    # pygame.draw.rect(screen, BLACK, [150, 10, 50, 20])
-    # pygame.draw.rect(screen, BLACK, [150, 10, 50, 20])
+    pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight, barHeight, barWidth]) # 2
+    pygame.draw.rect(screen, BLACK, [startingX ,startingY + barWidth + barHeight, barWidth, barHeight]) # 3
+    pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 4
+    pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 5
+    pygame.draw.rect(screen, BLACK, [startingX, startingY + barHeight + barWidth + barHeight + barWidth, barWidth, barHeight]) # 6
 
     pygame.display.flip()
  
