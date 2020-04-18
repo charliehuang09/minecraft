@@ -137,7 +137,7 @@ if __name__ == "__main__":
     mc = minecraft.Minecraft.create("mc.fipy.me")
 
     #Post a message to the minecraft chat window 
-    mc.postToChat("Hi, Minecraft Analogue Clock, www.stuffaboutcode.com")
+    mc.postToChat("Hi, Minecraft Analogue Clock")
 
     time.sleep(2)
     
