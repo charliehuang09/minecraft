@@ -1,6 +1,39 @@
 import pygame
 from math import pi
- 
+
+mapping = (
+    (0,1,2,4,5,6),
+    (2,5),
+    (0,2,3,4,6),
+    (0,2,3,5,6),
+    (1,2,3,5),
+    (0,1,3,5,6),
+    (0,1,4,6,5,3),
+    (0,2,5),
+    (0,1,2,3,4,5,6),
+    (0,1,2,3,5,6)
+)
+
+def drawStick(startingX, startingY, index):
+    if (index == 0):
+        pygame.draw.rect(screen, BLACK, [startingX, startingY, barWidth, barHeight]) # 0
+    if (index == 1):
+        pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight, barHeight, barWidth]) # 1
+    if (index == 2):
+        pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight, barHeight, barWidth]) # 2
+    if (index == 3):
+        pygame.draw.rect(screen, BLACK, [startingX ,startingY + barWidth + barHeight, barWidth, barHeight]) # 3
+    if (index == 4):
+        pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 4
+    if (index == 5):
+        pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 5
+    if (index == 6):
+        pygame.draw.rect(screen, BLACK, [startingX, startingY + barHeight + barWidth + barHeight + barWidth, barWidth, barHeight]) # 6
+
+def drawDigit(startingX, startingY, num):
+    for stick in mapping[num]:
+        drawStick(startingX, startingY, stick)
+
 # Initialize the game engine
 pygame.init()
  
@@ -12,7 +45,7 @@ GREEN = (  0, 255,   0)
 RED =   (255,   0,   0)
  
 # Set the height and width of the screen
-size = [400, 300]
+size = [1200, 300]
 screen = pygame.display.set_mode(size)
  
 pygame.display.set_caption("LED Digit")
@@ -40,16 +73,11 @@ while not done:
     # Draw a solid rectangle
     barWidth = 50
     barHeight = 20
-    startingX = 150
-    startingY = 10
+    startingX = 50
+    startingY = 40
 
-    pygame.draw.rect(screen, BLACK, [startingX, startingY, barWidth, barHeight]) # 0
-    pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight, barHeight, barWidth]) # 1
-    pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight, barHeight, barWidth]) # 2
-    pygame.draw.rect(screen, BLACK, [startingX ,startingY + barWidth + barHeight, barWidth, barHeight]) # 3
-    pygame.draw.rect(screen, BLACK, [startingX - barHeight, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 4
-    pygame.draw.rect(screen, BLACK, [startingX + barWidth, startingY + barHeight + barHeight + barWidth, barHeight, barWidth]) # 5
-    pygame.draw.rect(screen, BLACK, [startingX, startingY + barHeight + barWidth + barHeight + barWidth, barWidth, barHeight]) # 6
+    for n in range(10):
+        drawDigit(startingX + n * (barWidth + barHeight * 3) , startingY, n)
 
     pygame.display.flip()
  
