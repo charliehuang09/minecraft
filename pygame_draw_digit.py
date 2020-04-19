@@ -1,5 +1,6 @@
 import pygame
 from math import pi
+import datetime
 
 mapping = (
     (0,1,2,4,5,6),
@@ -75,9 +76,31 @@ while not done:
     barHeight = 20
     startingX = 50
     startingY = 40
+    spacing = 100
 
-    for n in range(10):
-        drawDigit(startingX + n * (barWidth + barHeight * 3) , startingY, n)
+    #for n in range(10):
+    #    drawDigit(startingX + n * (barWidth + barHeight * 3) , startingY, n)
+
+    curTime = datetime.datetime.now()
+    hour = curTime.hour
+    min = curTime.minute
+    
+    #print(curTime)
+    #draw hour first digit:
+    drawDigit(startingX, startingY, 0)
+
+    #draw hour second digit:
+    drawDigit(startingX + spacing, startingY, 3)
+    #draw colon:
+    
+    pygame.draw.rect(screen, BLACK, [startingX - barHeight + spacing + spacing + 20, startingY + barHeight, 20, 20]) # 6
+    pygame.draw.rect(screen, BLACK, [startingX - barHeight + spacing + spacing + 20, startingY + 100 + barHeight, 20, 20]) # 6
+    #draw minute first digit:
+    drawDigit(startingX + spacing + spacing + spacing, startingY, 4)
+
+    #draw minute second digit:
+    drawDigit(startingX + spacing + spacing + spacing + spacing, startingY, 4)
+
 
     pygame.display.flip()
  
