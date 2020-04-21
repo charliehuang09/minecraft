@@ -1,6 +1,8 @@
 import pygame
 from math import pi
 import datetime
+import time
+
 
 mapping = (
     (0,1,2,4,5,6),
@@ -59,11 +61,11 @@ while not done:
  
     # This limits the while loop to a max of 10 times per second.
     # Leave this out and we will use all CPU we can.
-    clock.tick(10)
+    clock.tick(3)
      
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
-            done=True # Flag that we are done so we exit this loop
+            done = True # Flag that we are done so we exit this loop
  
     # All drawing code happens after the for loop and but
     # inside the main while done==False loop.
@@ -78,31 +80,44 @@ while not done:
     startingY = 40
     spacing = 100
 
+    curTime = datetime.datetime.now()
+    print (curTime)
+    hour = curTime.hour
+    min = curTime.minute
+    min_ones_place = min % 10
+    min_tenths_place = int((min - min_ones_place) / 10)
+    hour_ones_place = hour % 10
+    hour_tenths_place =  int((hour - hour_ones_place ) / 10)
+    sec = curTime.second
+    sec_ones_place = sec % 10
+    sec_tenths_place = int((sec - sec_ones_place) / 10)
+
     #for n in range(10):
     #    drawDigit(startingX + n * (barWidth + barHeight * 3) , startingY, n)
 
-    curTime = datetime.datetime.now()
-    hour = curTime.hour
-    min = curTime.minute
-    
     #print(curTime)
     #draw hour first digit:
-    drawDigit(startingX, startingY, 0)
+    drawDigit(startingX, startingY, hour_tenths_place)
 
     #draw hour second digit:
-    drawDigit(startingX + spacing, startingY, 3)
+    drawDigit(startingX + spacing, startingY, hour_ones_place)
     #draw colon:
     
     pygame.draw.rect(screen, BLACK, [startingX - barHeight + spacing + spacing + 20, startingY + barHeight, 20, 20]) # 6
     pygame.draw.rect(screen, BLACK, [startingX - barHeight + spacing + spacing + 20, startingY + 100 + barHeight, 20, 20]) # 6
     #draw minute first digit:
-    drawDigit(startingX + spacing + spacing + spacing, startingY, 4)
+    drawDigit(startingX + spacing + spacing + spacing, startingY, min_tenths_place)
 
     #draw minute second digit:
-    drawDigit(startingX + spacing + spacing + spacing + spacing, startingY, 4)
+    drawDigit(startingX + spacing + spacing + spacing + spacing, startingY, min_ones_place )
 
+    drawDigit(startingX + spacing + spacing + spacing + spacing + spacing + spacing, startingY, sec_tenths_place)
+
+    drawDigit(startingX + spacing + spacing + spacing + spacing + spacing + spacing + spacing, startingY, sec_tenths_place)
 
     pygame.display.flip()
+
+    time.sleep(0.5)
  
      
 # Be IDLE friendly
