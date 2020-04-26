@@ -123,7 +123,10 @@ def updateTime(mc, clockCentre, lastTime, time):
     if (lastTime.second != time.second):
         #clear hand
         drawSecondHand(mc, clockCentre, lastTime.second, block.AIR)
-        #new hand
+
+        while True:
+            nowTime = datetime.datetime.now()
+            updateTime(mc, clockCentre        #new hand
         drawSecondHand(mc, clockCentre, time.second, block.WOOD_PLANKS)
 
 if __name__ == "__main__":
@@ -143,10 +146,7 @@ if __name__ == "__main__":
     
     lastTime = datetime.datetime.now()
     drawClock(mc, clockCentre, radius, lastTime)
-    try:
-        while True:
-            nowTime = datetime.datetime.now()
-            updateTime(mc, clockCentre, lastTime, nowTime)
+    try:, lastTime, nowTime)
             lastTime = nowTime
             time.sleep(0.5)
     except KeyboardInterrupt:

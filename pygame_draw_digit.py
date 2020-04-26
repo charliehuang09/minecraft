@@ -57,11 +57,8 @@ pygame.display.set_caption("LED Digit")
 done = False
 clock = pygame.time.Clock()
  
-while not done:
- 
-    # This limits the while loop to a max of 10 times per second.
-    # Leave this out and we will use all CPU we can.
-    clock.tick(3)
+while True:
+    clock.tick(40)
      
     for event in pygame.event.get(): # User did something
         if event.type == pygame.QUIT: # If user clicked close
@@ -81,7 +78,7 @@ while not done:
     spacing = 100
 
     curTime = datetime.datetime.now()
-    print (curTime)
+    # print (curTime)
     hour = curTime.hour
     min = curTime.minute
     min_ones_place = min % 10
@@ -107,17 +104,16 @@ while not done:
     pygame.draw.rect(screen, BLACK, [startingX - barHeight + spacing + spacing + 20, startingY + 100 + barHeight, 20, 20]) # 6
     #draw minute first digit:
     drawDigit(startingX + spacing + spacing + spacing, startingY, min_tenths_place)
-
     #draw minute second digit:
     drawDigit(startingX + spacing + spacing + spacing + spacing, startingY, min_ones_place )
 
     drawDigit(startingX + spacing + spacing + spacing + spacing + spacing + spacing, startingY, sec_tenths_place)
 
-    drawDigit(startingX + spacing + spacing + spacing + spacing + spacing + spacing + spacing, startingY, sec_tenths_place)
+    drawDigit(startingX + spacing + spacing + spacing + spacing + spacing + spacing + spacing, startingY, sec_ones_place)
 
     pygame.display.flip()
 
-    time.sleep(0.5)
+    time.sleep(0.001)
  
      
 # Be IDLE friendly
