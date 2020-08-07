@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     #Connect to minecraft by creating the minecraft object
     # - minecraft needs to be running and in a game
-    mc = minecraft.Minecraft.create("mc.fipy.me")
+    mc = minecraft.Minecraft.create("localhost")
 
     #Post a message to the minecraft chat window 
     mc.postToChat("Hi, Minecraft - Auto Bridge Active")
